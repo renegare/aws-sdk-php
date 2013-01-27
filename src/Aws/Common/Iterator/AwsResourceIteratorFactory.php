@@ -72,15 +72,10 @@ class AwsResourceIteratorFactory implements ResourceIteratorFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function build($data, array $options = array())
+    public function build(CommandInterface $data, array $options = array())
     {
-        // Make sure $data is a command
-        if ($data instanceof CommandInterface) {
-            /** @var $command CommandInterface */
-            $command = $data;
-        } else {
-            throw new InvalidArgumentException('The first argument must be an instance of CommandInterface');
-        }
+        /** @var $command CommandInterface */
+        $command = $data;
 
         // Get the configuration data for the command
         $commandName = $command->getName();
